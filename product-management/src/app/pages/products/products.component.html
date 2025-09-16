@@ -1,0 +1,35 @@
+<h2>Products</h2>
+<button (click)="goAdd()">+ Add Product</button>
+
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="error" style="color:red">{{ error }}</div>
+
+<table *ngIf="!loading && products.length" border="1" cellspacing="0" cellpadding="6">
+  <thead>
+    <tr>
+      <th>_id</th>
+      <th>id</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Units</th>
+      <th>Description</th>
+      <th>Ops</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of products">
+      <td>{{ p._id }}</td>
+      <td>{{ p.id }}</td>
+      <td>{{ p.name }}</td>
+      <td>{{ p.price }}</td>
+      <td>{{ p.units }}</td>
+      <td>{{ p.description }}</td>
+      <td>
+        <button (click)="goEdit(p)">Edit</button>
+        <button (click)="remove(p)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="!loading && !products.length">暂无数据</p>
